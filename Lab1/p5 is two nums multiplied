@@ -1,0 +1,69 @@
+// Online C compiler (editor)
+// Write and run C online using this editor.
+
+#include <stdio.h>
+#include <math.h>
+void get_usr_num(int* num);
+void Flush( void );
+int main() {
+
+
+    char cmd='y';
+    do
+        {
+            ////start of program
+                //inputs
+                int a,b;
+                printf("Enter first number:");
+                get_usr_num(&a);
+                printf("Enter second number:");
+                get_usr_num(&b);
+            
+               //a is is greater than b
+                if(b>a)
+                {
+                    //swap
+                    int temp=a;
+                    a=b;
+                    b=temp;
+                }
+            if(a%b==0)
+            {
+                printf("They are multiplied.\n");
+            }
+            else
+            {
+                printf("They are NOT multiplied.\n");
+            }
+
+            ///end of program
+                Flush( );
+                printf("if you need another calculatoin press 'y'.\n");
+                cmd=getchar();
+        }while(cmd=='y');
+        printf("program end.");
+
+    
+    return 0;
+}
+
+
+void get_usr_num(int* num)
+{
+    int status=0;
+    do
+        {
+           status= scanf("%d",num);
+            if(status!=1)
+            {
+                Flush();
+                printf("please enter numbers only!!\n");
+            }
+            
+        }
+        while (status!=1);
+}
+void Flush( void ) {
+    while ( getchar() != '\n' )
+        ;
+}
