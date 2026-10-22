@@ -1,4 +1,5 @@
 #include "mysting.h"
+#include <stdlib.h>
 char *mystr_memchr(char *s, char ch, unsigned int size)
 {
     char *ptr = s;
@@ -132,25 +133,25 @@ char *mystr_strcpy(void *strDest, void *strSrc)
     *ptr_dest_it='\0';
     return strDest;
 }
-unsigned int mystr_strspn(char* str,char* srch)
+unsigned int mystr_strspn(char *str, const char *srch)
 {
-    unsigned int res=0;
-    char* search_it=srch;
-    while(*str!='\0')
+    unsigned int res = 0;
+    char *search_it = srch;
+    while (*str != '\0')
     {
-        //search for all chars in str
-        bool isexist=0;
-        search_it=srch;
-        while(*search_it!='\0')
+        // search for all chars in str
+        bool isexist = 0;
+        search_it = srch;
+        while (*search_it != '\0')
         {
-            if(*search_it == *str)
+            if (*search_it == *str)
             {
-                isexist=1;
+                isexist = 1;
                 break;
             }
             search_it++;
         }
-        if(isexist)
+        if (isexist)
         {
             break;
         }
@@ -263,3 +264,31 @@ char* mystr_strstr(char * str, char* search)
     return res;
 }
 
+char *mystr_strtok(char *str, const char *delimeters)
+{
+    static char *s_str_it = nullptr;
+    static char *s_res = nullptr;
+    if (s_res == nullptr)
+        s_res = (char *)malloc(sizeof(char));
+    // if new string set it as str_it
+    if (str != nullptr)
+        s_str_it = str;
+    // error no string is called and or all string tokens are already returned
+    if (s_str_it == nullptr)
+        return nullptr;
+    unsigned int tok_size = mystr_strspn(s_str_it, delimeters);
+    // free previous tok and allocate new one
+    if (tok_size != 0)
+    {
+        free(s_res);
+        s_res = (char *)malloc((tok_size + 1) * sizeof(char));
+        mystr_strncpy(s_res, s_str_it, tok_size);
+        s_res[tok_size] = '\0';
+        s_str_it += tok_size + 1;
+        return s_res;
+    }
+    else // retur null
+    {
+        return nullptr;
+    }
+}

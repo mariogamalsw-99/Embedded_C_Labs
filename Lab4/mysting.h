@@ -11,11 +11,12 @@ char* mystr_strcat(char *pDest, char *pSrc);
 int mystr_strcmp(char *, char *);
 char* mystr_strcpy(void *strDest, void *strSrc);
 char* mystr_strchr(char *pDest, char c);
-unsigned int mystr_strspn(char* str,char* srch);
+unsigned int mystr_strspn(char* str,const char* srch);
 unsigned int mystr_strlen(char* str);
 char* mystr_strncat(char *pDest, char *pSrc,unsigned int n);
 int mystr_strncmp(char *, char *,unsigned int n);
 char* mystr_strncpy(void *strDest, void *strSrc,unsigned int n);
 char* mystr_strrchr(char *pDest, char c);
 char* mystr_strstr(char * str, char* search);
+char* mystr_strtok(char* str,const char* delimeters);
 #endif /* COMPLEX_NUMBER_H */

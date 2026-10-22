@@ -177,6 +177,29 @@ void Test_strstr(void)
   res=mystr_strstr(tststr,"illo");
   TEST_ASSERT_NULL_MESSAGE(res,"str not found in string");
 }
+void Test_strTok()
+{
+  char tststr[]="Hello there,I'm here.",delim[]=" ,.";
+  char* tok=mystr_strtok(tststr,delim);
+  //expected "Hello"
+  TEST_ASSERT_NOT_NULL(tok);
+  TEST_ASSERT_EQUAL_STRING_MESSAGE("Hello",tok,"Find at first token");
+  //expected "there"
+  tok=mystr_strtok(NULL,delim);
+  TEST_ASSERT_NOT_NULL(tok);
+  TEST_ASSERT_EQUAL_STRING_MESSAGE("there",tok,"Find at second token");
+  //expected I'm
+  tok=mystr_strtok(NULL,delim);
+  TEST_ASSERT_NOT_NULL(tok);
+  TEST_ASSERT_EQUAL_STRING_MESSAGE("I'm",tok,"Find at third token");
+  //expected "here"
+  tok=mystr_strtok(NULL,delim);
+  TEST_ASSERT_NOT_NULL(tok);
+  TEST_ASSERT_EQUAL_STRING_MESSAGE("here",tok,"Find at last token");
+  tok=mystr_strtok(NULL,delim);
+  TEST_ASSERT_NULL_MESSAGE(tok,"No more tokens return null");
+
+}
 int main(void)
 {
   UNITY_BEGIN();
@@ -196,5 +219,6 @@ int main(void)
   RUN_TEST(Test_strncpy);
   RUN_TEST(Test_strrchr);
   RUN_TEST(Test_strstr);
+  RUN_TEST(Test_strTok);
   return UNITY_END();
 }
