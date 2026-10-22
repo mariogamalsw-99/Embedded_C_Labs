@@ -129,14 +129,14 @@ char *mystr_strcpy(void *strDest, void *strSrc)
         ptr_src_it++;
         ptr_dest_it++;
     }
-    //add null char in end of dest
-    *ptr_dest_it='\0';
+    // add null char in end of dest
+    *ptr_dest_it = '\0';
     return strDest;
 }
 unsigned int mystr_strspn(char *str, const char *srch)
 {
     unsigned int res = 0;
-    char *search_it = srch;
+    const char *search_it = srch;
     while (*str != '\0')
     {
         // search for all chars in str
@@ -160,10 +160,10 @@ unsigned int mystr_strspn(char *str, const char *srch)
     }
     return res;
 }
-unsigned int mystr_strlen(char* str)
+unsigned int mystr_strlen(char *str)
 {
-    unsigned int res=0;
-    while(*str!='\0')
+    unsigned int res = 0;
+    while (*str != '\0')
     {
         res++;
         str++;
@@ -171,7 +171,7 @@ unsigned int mystr_strlen(char* str)
     return res;
 }
 
-char* mystr_strncat(char *pDest, char *pSrc,unsigned int n)
+char *mystr_strncat(char *pDest, char *pSrc, unsigned int n)
 {
     char *ptr_dest_it = pDest;
     // get the end of dest sting
@@ -181,10 +181,10 @@ char* mystr_strncat(char *pDest, char *pSrc,unsigned int n)
     }
     char *ptr_src_it = pSrc;
     // concat src
-    for (int i=0 ;i<n;i++ )
+    for (int i = 0; i < n; i++)
     {
-        //Guard to stop coping if n exceeds null
-        if(*ptr_src_it == '\0')
+        // Guard to stop coping if n exceeds null
+        if (*ptr_src_it == '\0')
         {
             return nullptr;
         }
@@ -196,16 +196,16 @@ char* mystr_strncat(char *pDest, char *pSrc,unsigned int n)
     *ptr_dest_it = '\0';
     return pDest;
 }
-int mystr_strncmp(char *str1, char *str2,unsigned int n)
+int mystr_strncmp(char *str1, char *str2, unsigned int n)
 {
-     int cmp_res = 0;
+    int cmp_res = 0;
     // string iterator
     char *str1_it = str1;
     char *str2_it = str2;
-     for (int i=0 ;i<n&&cmp_res==0;i++ )
+    for (int i = 0; i < n && cmp_res == 0; i++)
     {
-        //Guard to stop coping if n exceeds null
-        if(*str1_it == '\0')
+        // Guard to stop coping if n exceeds null
+        if (*str1_it == '\0')
         {
             return -1;
         }
@@ -215,16 +215,16 @@ int mystr_strncmp(char *str1, char *str2,unsigned int n)
     }
     return cmp_res;
 }
-char* mystr_strncpy(void *strDest, void *strSrc,unsigned int n)
+char *mystr_strncpy(void *strDest, void *strSrc, unsigned int n)
 {
-     // iterator
+    // iterator
     char *ptr_dest_it = strDest;
     char *ptr_src_it = strSrc;
 
-    for (int i=0 ;i<n;i++ )
+    for (int i = 0; i < n; i++)
     {
-        //Guard to stop coping if n exceeds null
-        if(*ptr_src_it == '\0')
+        // Guard to stop coping if n exceeds null
+        if (*ptr_src_it == '\0')
         {
             return nullptr;
         }
@@ -234,7 +234,7 @@ char* mystr_strncpy(void *strDest, void *strSrc,unsigned int n)
     }
     return strDest;
 }
-char* mystr_strrchr(char *pDest, char c)
+char *mystr_strrchr(char *pDest, char c)
 {
     char *res = nullptr;
     char *ptr_dest_it = pDest;
@@ -248,13 +248,13 @@ char* mystr_strrchr(char *pDest, char c)
     }
     return res;
 }
-char* mystr_strstr(char * str, char* search)
+char *mystr_strstr(char *str, char *search)
 {
     char *res = nullptr;
     char *ptr_str_it = str;
     while (*ptr_str_it != '\0')
     {
-        if (mystr_strncmp(ptr_str_it,search,mystr_strlen(search))==0 )
+        if (mystr_strncmp(ptr_str_it, search, mystr_strlen(search)) == 0)
         {
             res = ptr_str_it;
             break;
